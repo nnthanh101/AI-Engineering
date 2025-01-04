@@ -69,9 +69,9 @@ def validate_folder_name(folder_name: str) -> None:
     if len(folder_name) > 255:  # Max length in most file systems
         raise ValueError("Folder name exceeds maximum length (255 characters).")
 
-    invalid_chars = '<>:"/\\|?*'  # Reserved characters in Windows
-    if any(char in invalid_chars for char in folder_name):
-        raise ValueError(f"Folder name '{folder_name}' contains invalid characters.")
+    # invalid_chars = '<>:"/\\|?*'  # Reserved characters in Windows
+    # if any(char in invalid_chars for char in folder_name):
+    #     raise ValueError(f"Folder name '{folder_name}' contains invalid characters.")
 
     if folder_name in {"CON", "PRN", "AUX", "NUL"}:  # Reserved Windows names
         raise ValueError(f"Folder name '{folder_name}' is a reserved keyword.")
@@ -96,9 +96,9 @@ def validate_file_name(file_name: str) -> None:
     if len(file_name) > 255:
         raise ValueError("File name exceeds maximum length (255 characters).")
 
-    invalid_chars = '<>:"/\\|?*'
-    if any(char in invalid_chars for char in file_name):
-        raise ValueError(f"File name '{file_name}' contains invalid characters.")
+    # invalid_chars = '<>:"/\\|?*'
+    # if any(char in invalid_chars for char in file_name):
+    #     raise ValueError(f"File name '{file_name}' contains invalid characters.")
 
     if file_name.startswith(' ') or file_name.endswith(' '):
         raise ValueError("File name cannot start or end with spaces.")
@@ -133,7 +133,7 @@ def create_folder_and_file(folder_name: str, file_name: str) -> None:
     file_path = folder_path / file_name
 
     try:
-        ## ✅ Create folder if it doesn't exist
+        ## ✅ Create folder if it doesn't exist; same behavior as the POSIX `mkdir -p` command
         folder_path.mkdir(parents=True, exist_ok=True) ## Safe parent directory creation
         print(f"✅ Folder '{folder_name}' created successfully.")
 
