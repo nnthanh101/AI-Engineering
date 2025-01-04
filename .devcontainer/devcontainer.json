@@ -60,7 +60,10 @@
         "vscode-icons-team.vscode-icons",
         "esbenp.prettier-vscode",
         "vscode.git",
-        "charliermarsh.ruff"
+        "charliermarsh.ruff",
+        "ms-python.debugpy",
+        "esbenp.prettier-vscode",
+        "KevinRose.vsc-python-indent",
         // "HashiCorp.terraform",
         // "yy0931.vscode-sqlite3-editor",
         // "ms-ossdata.vscode-postgresql",
