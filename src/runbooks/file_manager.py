@@ -69,9 +69,9 @@ def validate_folder_name(folder_name: str) -> None:
     if len(folder_name) > 255:  # Max length in most file systems
         raise ValueError("Folder name exceeds maximum length (255 characters).")
 
-    # invalid_chars = '<>:"/\\|?*'  # Reserved characters in Windows
-    # if any(char in invalid_chars for char in folder_name):
-    #     raise ValueError(f"Folder name '{folder_name}' contains invalid characters.")
+    invalid_chars = '<>:"/\\|?*'  # Reserved characters in Windows
+    if any(char in invalid_chars for char in folder_name):
+        raise ValueError(f"Folder name '{folder_name}' contains invalid characters.")
 
     if folder_name in {"CON", "PRN", "AUX", "NUL"}:  # Reserved Windows names
         raise ValueError(f"Folder name '{folder_name}' is a reserved keyword.")
@@ -96,9 +96,9 @@ def validate_file_name(file_name: str) -> None:
     if len(file_name) > 255:
         raise ValueError("File name exceeds maximum length (255 characters).")
 
-    # invalid_chars = '<>:"/\\|?*'
-    # if any(char in invalid_chars for char in file_name):
-    #     raise ValueError(f"File name '{file_name}' contains invalid characters.")
+    invalid_chars = '<>:"/\\|?*'
+    if any(char in invalid_chars for char in file_name):
+        raise ValueError(f"File name '{file_name}' contains invalid characters.")
 
     if file_name.startswith(' ') or file_name.endswith(' '):
         raise ValueError("File name cannot start or end with spaces.")
@@ -141,12 +141,14 @@ def create_folder_and_file(folder_name: str, file_name: str) -> None:
         # os.chdir(folder_name) ## May Raise FileNotFoundError
         # with open(file_name, 'a'):
         #     pass
+        if file_path.exists():
+            raise FileExistsError(f"File '{file_name}' already exists in '{folder_name}'.")
+
         file_path.touch(exist_ok=False)  ## Create an empty file; Fails safely if file exists
         print(f"✅ File '{file_name}' created successfully inside '{folder_name}'.")
 
-    except FileExistsError:
-        print(f"⚠️ File '{file_name}' already exists in '{folder_name}'.")
-        sys.exit(1)
+    except FileExistsError as e:
+        raise FileExistsError(str(e))  # Re-raise exception without exiting
 
     except PermissionError:
         print("❌ Permission denied. Check your user permissions.")
@@ -171,7 +173,7 @@ def parse_arguments() -> tuple[str, str]:
 
     ## ✅ Check Arguments Length
     if len(sys.argv) < 2:
-        raise ValueError("❌ Usage: file_manager.py <folder_name> <file_name>")
+        raise ValueError("Provide exactly 2 arguments: <folder_name> <file_name>")
 
     ## ✅ Handle Debugger Inputs (Single Combined Argument)
     if len(sys.argv) == 2:

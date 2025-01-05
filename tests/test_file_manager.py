@@ -1,15 +1,24 @@
-from pathlib import Path
+#!/usr/bin/env python3
+"""
+Unit tests for file_manager.py.
+
+Author: Python Developer
+Date: 2025-01-05
+Version: 2.0.0
+
+Purpose:
+    Test all utility functions from `file_manager.py` for robustness and correctness.
+"""
 
 import pytest
-
+from pathlib import Path
 from runbooks.file_manager import (
     create_folder_and_file,
     parse_arguments,
-    validate_file_name,
-    validate_folder_name,
     validate_input,
+    validate_folder_name,
+    validate_file_name,
 )
-
 
 ## ==============================
 ## TEST: validate_input()
@@ -132,16 +141,16 @@ def test_create_folder_and_file_existing_file(cleanup_test_files):
     """Tests error handling when file already exists."""
     Path("test_folder").mkdir()
     Path("test_folder/test_file.txt").touch()
-    with pytest.raises(FileExistsError):
+    with pytest.raises(FileExistsError, match="File 'test_file.txt' already exists in 'test_folder'"):
         create_folder_and_file("test_folder", "test_file.txt")
 
 
 def test_create_folder_and_file_invalid_names():
     """Tests error handling for invalid names."""
-    with pytest.raises(ValueError, match="Invalid folder name"):
+    with pytest.raises(ValueError, match="contains invalid characters."):
         create_folder_and_file("folder*", "file.txt")
 
-    with pytest.raises(ValueError, match="Invalid file name"):
+    with pytest.raises(ValueError, match="contains invalid characters."):
         create_folder_and_file("test_folder", "file*?.txt")
 
 
@@ -167,5 +176,6 @@ def test_parse_arguments_debugger_mode(monkeypatch):
 def test_parse_arguments_invalid(monkeypatch):
     """Tests invalid arguments."""
     monkeypatch.setattr('sys.argv', ["file_manager.py"])
-    with pytest.raises(ValueError, match="Provide exactly 2 arguments"):
+    with pytest.raises(ValueError, match="Provide exactly 2 arguments: <folder_name> <file_name>"):
         parse_arguments()
+
