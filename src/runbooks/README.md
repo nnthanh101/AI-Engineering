@@ -22,3 +22,39 @@ print(result)
 runbooks.validate_input() 
 
 runbooks.add(5,2)
+
+## uv
+
+```
+uv venv ~/.venv
+# source ~/.venv/bin/activate
+
+uv pip install pytest pytest-cov ruff
+
+uv pip list
+
+# uv sync --frozen --no-install-project --no-dev --compile-bytecode
+# uv sync --all-extras --dev
+# uv pip install --compile-bytecode .
+```
+
+## test_*.py using pytest
+
+* [ ] 1. Run Tests
+
+    ```
+    pytest tests/test_file_manager.py --cov=src/runbooks --cov-report=term-missing -v
+
+    ```
+
+* [ ] 2. Install Package
+
+    ```
+    pip install -e .
+    ```
+
+* [ ] 3. Execute CLI Tool
+
+    ```
+    runbooks test_folder test_file.txt
+    ```

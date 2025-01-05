@@ -40,11 +40,11 @@ tasks:
   cmds:
     - echo "Setting UV link mode for compatibility..."
     - export UV_LINK_MODE=copy
-    - uv self update
+    # - uv self update
     - echo "Syncing dependencies with UV..."
     - uv sync --all-extras --dev
-    - echo "Installing build tool..."
-    - "{{.PYTHON_INTERPRETER}} -m pip install build --upgrade"
+    # - echo "Installing build tool..."
+    # - "{{.PYTHON_INTERPRETER}} -m pip install build --upgrade"
 
   ## Clean Build Artifacts and Cache
   clean:
