@@ -6,7 +6,7 @@ Tests the arithmetic operations provided by the toolkit module, covering:
 - Edge cases such as invalid inputs, division by zero, NaN, and Infinity.
 - Performance with large numbers and type safety checks.
 
-Author: DevOps Engineer
+Author: Python Developer
 """
 
 import pytest

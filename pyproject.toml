@@ -1,7 +1,7 @@
 [project]
 ## https://docs.astral.sh/uv/concepts/projects/config/
 name = "runbooks"
-version = "0.1.3"  # Incremented for new release
+version = "0.1.5"  ## Incremented for new release
 description = "CloudOps Automation Toolkit for DevOps and SRE teams."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -30,14 +30,14 @@ dependencies = [
     "loguru>=0.7.3",
     "typer>=0.15.1",
     "tqdm>=4.67.1",
-    "uv>=0.1.38"
+    "uv>=0.1.38",
+    "ruff>=0.8.4",
+    "pytest>=8.3.4", 
+    "pytest-cov>=6.0.0"
 ]
 
 [dependency-groups]
 dev = [
-    "pytest>=8.3.4", 
-    "ruff>=0.8.4",
-    "pytest-cov>=6.0.0",
     "black>=23.11.0",
     "pre-commit>=3.5.0",
     "boto3>=1.35.90",

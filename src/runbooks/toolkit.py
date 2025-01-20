@@ -9,7 +9,7 @@ Features:
 - Supports logging for better traceability.
 - Enforces type checks for input safety.
 
-Author: DevOps Engineer
+Author: Python Developer
 """
 
 from typing import Union
