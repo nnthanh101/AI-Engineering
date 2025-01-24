@@ -1,7 +1,8 @@
 [project]
-## https://docs.astral.sh/uv/concepts/projects/config/
+## Metadata: https://docs.astral.sh/uv/concepts/projects/config/
 name = "runbooks"
-version = "0.1.5"  ## Incremented for new release
+## Incremented for new release
+version = "0.1.7"
 description = "CloudOps Automation Toolkit for DevOps and SRE teams."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -25,24 +26,28 @@ classifiers = [
     "Topic :: Utilities",
 ]
 
+## Core Dependencies
 dependencies = [
     "requests>=2.32.3",
     "loguru>=0.7.3",
-    "typer>=0.15.1",
     "tqdm>=4.67.1",
-    "uv>=0.1.38",
-    "ruff>=0.8.4",
-    "pytest>=8.3.4", 
-    "pytest-cov>=6.0.0"
+    
+
+    ## 1xOps/CloudOps-Runbooks: https://pypi.org/project/runbooks/
+    "runbooks>=0.2.0"
 ]
 
 [dependency-groups]
+## Development Dependencies
 dev = [
-    "black>=23.11.0",
-    "pre-commit>=3.5.0",
-    "boto3>=1.35.90",
-    "moto>=5.0.25",
-    "versioningit"
+    ## Testing Tools
+    "pytest>=8.3.4",
+    "pytest-cov>=6.0.0",
+    "ruff>=0.8.4",
+    # "black>=23.11.0",
+    # "pre-commit>=3.5.0",
+    "typer>=0.15.1",
+    "versioningit",
 ]
 
 [build-system]
@@ -50,15 +55,15 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-# license-files = []
-package-dir = {"" = "src"}  # Use 'src' as root
+package-dir = {"" = "src"}  ## Use 'src' as root
 packages = ["runbooks"]
-license-files = ["LICENSE"]
+license-files = []
+# license-files = ["LICENSE"]
 
 [tool.versioningit]
 vcs = "git"
 tag2version = "v{base}"
-default-version = "0.1.5"
+default-version = "0.1.7"
 
 [tool.pytest.ini_options]
 ## Test Configuration
@@ -66,9 +71,12 @@ pythonpath = ["src"]
 testpaths = ["tests"]
 addopts = "--cov=src/runbooks --cov-report=term-missing --verbose"
 
+
 [project.scripts]
 ## CLI Commands
-runbooks = "runbooks.runbooks:main"
+runbooks-aws = "runbooks.aws:run_script"
+runbooks-security = "runbooks.security_baseline:run_script"
+
 
 [tool.ruff]
 ## Linting and Formatting Configurations
