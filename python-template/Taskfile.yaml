@@ -34,17 +34,27 @@ tasks:
   # ENVIRONMENT SETUP                                                             #
   #################################################################################
 
-  ## Install Python Dependencies
-  install:
-  desc: "Install Python dependencies using UV with copy mode"
-  cmds:
-    - echo "Setting UV link mode for compatibility..."
-    - export UV_LINK_MODE=copy
-    # - uv self update
-    - echo "Syncing dependencies with UV..."
-    - uv sync --all-extras --dev
+  
     # - echo "Installing build tool..."
     # - "{{.PYTHON_INTERPRETER}} -m pip install build --upgrade"
+
+  ## ==========================
+  ## INSTALL DEPENDENCIES
+  ## ==========================
+  install:
+    desc: "Install Python dependencies using UV with copy mode"
+    cmds:
+      - echo "🌐 Setting UV link mode for compatibility..."
+      # - export UV_LINK_MODE={{.UV_LINK_MODE}}
+      - export UV_LINK_MODE=copy
+      # - uv self update  ## Optional: Update UV tool if required
+      - echo "📦 Syncing dependencies with UV..."
+      - uv sync --all-extras --dev
+      - uv pip list
+      - echo "✅ Dependencies installed successfully."
+      ## PIP
+      # - echo "Installing dependencies with PIP..."
+      # - "{{.PYTHON_INTERPRETER}} -m pip install build --upgrade"
 
   ## Clean Build Artifacts and Cache
   clean:
