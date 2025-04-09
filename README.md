@@ -29,13 +29,7 @@ This project provides a blueprint for developers who wish to go beyond conventio
 ### How to Use
 1. **Review PLANNING.md** to understand the overall approach, architecture, and design constraints.  
 2. **Check TASK.md** for the current project status, tasks in progress, and future enhancements.  
-3. **Contribute** by creating pull requests or issues. Always reference PLANNING.md and update TASK.md accordingly.
-
-### Licensing & Credits
-- **License**: Apache 2.0 
-- **References**:  
-  - [LangChain Documentation](https://github.com/hwchase17/langchain)  
-  - [CrewAI](https://github.com/crew-ai/crewai)   
+3. **Contribute** by creating pull requests or issues. Always reference PLANNING.md and update TASK.md accordingly.  
 
 ### About
 
