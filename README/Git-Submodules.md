@@ -1,12 +1,12 @@
 # Git Submodules 101
 
 ```
-git submodule add https://github.com/openai/openai-cookbook
-git submodule add https://github.com/open-webui/open-webui
-git submodule add https://github.com/openai/openai-agents-python
-git submodule add https://github.com/crewAIInc/crewAI-examples
-git submodule add https://github.com/letta-ai/letta
-git submodule add https://github.com/microsoft/AI-For-Beginners
+git submodule add https://github.com/openai/openai-cookbook README/openai-cookbook
+git submodule add https://github.com/open-webui/open-webui README/open-webui
+git submodule add https://github.com/openai/openai-agents-python README/openai-agents-python
+git submodule add https://github.com/crewAIInc/crewAI-examples README/crewAI-examples
+git submodule add https://github.com/letta-ai/letta README/letta
+git submodule add https://github.com/microsoft/AI-For-Beginners README/AI-For-Beginners
 ```
 
 ## If someone else updated the submodule pointer
